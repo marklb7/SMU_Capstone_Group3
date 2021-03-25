@@ -1,1 +1,1 @@
-# Smu_Capstone_Group3
+# SMU_Capstone_Group3
