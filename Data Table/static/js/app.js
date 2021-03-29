@@ -20,8 +20,9 @@ $(document).ready(function() {
 });
 
 function buildFilters() {
-    buildUniqueFilterHelper("region", "region");
-    buildUniqueFilterHelper("income", "income");
+    buildUniqueFilterHelper("Country", "country");
+    buildUniqueFilterHelper("Region", "region");
+    buildUniqueFilterHelper("Income_Group", "income");
 }
 
 function resetFilters() {
@@ -29,8 +30,6 @@ function resetFilters() {
     $("#year").text("");
 
     $("#country").val("");
-    $("#country").text("");
-
     $("#region").val("");
     $("#income").val("");
 }
@@ -38,10 +37,10 @@ function resetFilters() {
 function buildUniqueFilterHelper(colName, filterID) {
     var unq_column = [...new Set(table_data.map(x => x[colName]))];
     unq_column = unq_column.sort();
-    // unq_column.forEach(function(val) {
-    //     var newOption = `<option>${val.toUpperCase()}</option>`;
-    //     $(`#${filterID}`).append(newOption);
-    // });
+    unq_column.forEach(function(val) {
+        var newOption = `<option>${val}</option>`;
+        $(`#${filterID}`).append(newOption);
+    });
 }
 
 function buildTable() {
@@ -53,16 +52,16 @@ function buildTable() {
     //apply filters
     var filteredData = table_data;
     if (yearFilter) {
-        filteredData = filteredData.filter(row => row.year === yearFilter);
+        filteredData = filteredData.filter(row => row.Year === yearFilter);
     }
     if (countryFilter) {
-        filteredData = filteredData.filter(row => row.country === countryFilter.toLowerCase());
+        filteredData = filteredData.filter(row => row.Country === countryFilter);
     }
     if (regionFilter) {
-        filteredData = filteredData.filter(row => row.reqion === regionFilter.toLowerCase());
+        filteredData = filteredData.filter(row => row.Region === regionFilter);
     }
     if (incomeFilter) {
-        filteredData = filteredData.filter(row => row.income === incomeFilter.toLowerCase());
+        filteredData = filteredData.filter(row => row.Income_Group === incomeFilter);
     }
 
     // see if we have any data left
@@ -98,7 +97,7 @@ function buildTableString(data) {
     });
 
     //redraw
-    $("#life-table").DataTable({
+    $("#who-table").DataTable({
         dom: 'Bfrtip', //lbfrtip if you want the length changing thing
         buttons: [
             { extend: 'copyHtml5' },
@@ -106,7 +105,7 @@ function buildTableString(data) {
             { extend: 'csvHtml5' },
             {
                 extend: 'pdfHtml5',
-                title: function() { return "UFO Observations"; },
+                title: function() { return "WHO Data"; },
                 orientation: 'portrait',
                 pageSize: 'LETTER',
                 text: 'PDF',
