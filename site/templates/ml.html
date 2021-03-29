@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Life Expectancy ML</title>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Boostrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/minty/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <!--d3-->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <!-- JS -->
+    <script type="text/javascript" src="../static/js/logic.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="index.html"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">Home</a>
+
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/predictions">Predict Life Expectancy</a>
+                    <span class="sr-only">(current)</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tableau"> Visualizations</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/datatable"> Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/aboutus">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <hr>
+    <div class="container-fluid">
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="inputCard">
+                    <div class="card border-primary mb-3" style="max-width: 60rem;">
+                        <div class="card-header" style="font-size: x-large;"><strong> Life Expectancy Here!</strong></div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div id="wrapper">
+                                        <div class="demo">
+                                            <h5>Choose a Country & Year First!</h5>
+                                            <div class="control-group">
+                                                <select id="country"></select>
+                                                <select id="year"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <br>
+                                    <button type="button" class="btn btn-primary float-right" id="go">Filter</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-form-label col-form-label-sm" for="inputSmall">Alcohol Usage (age 15+) Percentage</label>
+                                    <input type="text" id="inputAlc">
+                                </div>
+                                <div class="form-group">
+                                    <label class=" col-form-label col-form-label-sm" for="inputSmall">Measles</label>
+                                    <input type="text" id="inputM">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label col-form-label-sm " for="inputSmall">Percentage Expendature on Healthcare</label>
+                                    <input type="text" id="inputExp">
+                                </div>
+                                <div class="form-group ">
+                                    <label class="col-form-label col-form-label-sm " for="inputSmall">Average Body Mass Index (BMI)</label>
+                                    <input type="text " id="inputBMI">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label col-form-label-sm " for="inputSmall">HIV/AIDs</label>
+                                    <input type="text " id="inputhiv_aids">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label col-form-label-sm " for="inputSmall">Schooling</label>
+                                    <input type="text" id="inputSchool">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="income">Income</label>
+                                    <select id="income">
+                                    <option selected=""></option>
+                                    <option value="High income">High Income</option>
+                                    <option value="Upper middle income">Upper Middle Income</option>
+                                    <option value="Lower middle income">Lower Middle Income</option>
+                                    <option value="Low income"> Low Income</option>
+                            </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="filter">Make Prediction!</button>
+                </div>
+            </div>
+            <br>
+            <div class="col-md-6">
+                <div class="card border-primary mb-3" style="max-width: 60rem;" id="instructions">
+                    <div class="card-header">How to use this model?</div>
+                    <div class="card-body">
+                        <h4 class="card-title">Instructions</h4>
+                        <ol>
+                            <li>Select a Country & Year to analyze</li>
+                            <li>Press filter and have the default information and life expectancy appear</li>
+                            <li>Adjust the parameters that effect life expenctancy and press "Make Prediction!" to see what life expectancy would be with these new parameters!</li>
+                        </ol>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+            </div>
+        </div>
+        <hr style="color:lightgray; border-width: 3px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 id="output">Life Expectancy</h1>
+                <h5 id="life"></h5>
+            </div>
+        </div>
+        <br>
+        <hr style="color:lightgray; border-width: 3px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Glossary</h1>
+                <table class="table table-bordered table-hover">
+                    <caption>Key for the Machine Learning Inputs (variable definitions provided by Kaggle)</caption>
+
+                    <thead>
+                        <tr>
+                            <th>Input</th>
+                            <th>Definition</th>
+                            <th>Model Importances</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Alcohol Usage</td>
+                            <td>Alcohol, recorded per capita (15+) consumption (in liters of alcohol)</td>
+                            <td>3.4%</td>
+                        </tr>
+
+                        <tr>
+                            <td>Measles</td>
+                            <td>Number of reported cases per 1000 population</td>
+                            <td>1.7%</td>
+                        </tr>
+
+                        <tr>
+                            <td>Percentage Expendature on Healthcare</td>
+                            <td>Expenditure on health as a percentage of Gross Domestic Product (GDP) per capita(%)</td>
+                            <td>2.6%</td>
+                        </tr>
+                        <tr>
+                            <td>Average BMI</td>
+                            <td>Average Body Mass Index of entire population</td>
+                            <td>6.7%</td>
+                        </tr>
+                        <tr>
+                            <td>HIV/AIDs</td>
+                            <td>Deaths per 1000 live births HIV/AIDS (0-4 years)</td>
+                            <td>61.9%</td>
+                        </tr>
+                        <tr>
+                            <td>Schooling</td>
+                            <td>Average Number of years of schooling</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td>Income</td>
+                            <td>Income group for the adjusted net national income per capita</td>
+                            <td>13.7%</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

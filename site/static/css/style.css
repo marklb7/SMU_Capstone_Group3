@@ -1,0 +1,15 @@
+label {
+    width: 200px !important;
+    display: inline-block;
+}
+
+#instructions,
+#inputCard {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#go {
+    width: 200px;
+    margin-right: 20%;
+}

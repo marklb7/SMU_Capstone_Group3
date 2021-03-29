@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Life Expectancy</title>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    <!-- Boostrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/minty/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/styleHome.css">
+    <!-- JS -->
+    <script type="text/javascript" src="../static/js/app_map.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Life Expectancy around the World</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                    <span class="sr-only">(current)</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/predictions">Predict Life Expectancy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tableau"> Visualizations</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/datatable"> Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/aboutus">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row" style="margin-top:2.5%">
+            <div class="col-md-12" style="border: .5px solid lightgrey;">
+                <div class="row">
+                    <div id="headline" class="col-md-12">
+                        <h1>Life Expectancy Based on Demographics</h1>
+                        <hr>
+                        <h3>Based on your demographics, income, and health, what will your life expectancy be?</h3>
+                        <h3>How can you increase life expectancy by changing these statistics?</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <hr>
+        <div class="row" style="margin-top:3.5%">
+            <div class="col-md-12">
+                <div id="tableauParent">
+                    <div style="height:1000px" id="tableauViz" class=”myTableauViz”></div>
+                </div>
+
+                <hr>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
